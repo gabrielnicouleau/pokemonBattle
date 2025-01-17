@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body class="bg-gray-500">
+        <main class="my-72">
+            {% if lastCombat %}
+            <h1 class="text-center uppercase text-xl my-5 text-white">résultats du combat</h1>
+                <div class="flex items-center justify-center">
+                    <div class="flex-none w-32"></div>
+                    <div class="text-center flex-none w-32 border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 bg-white">
+                        <p>Pokémon 1 : {{ lastCombat.pokemon1.nom }}</p>
+                        <img width="150" height="150" viewBox="0 0 56 56" src="{{ lastCombat.pokemon1.image }}" alt="pokemon 1">
+                    </div>
+                    <p class="flex-none w-32 text-center uppercase text-xl text-white">VS</p>
+                    <div class="text-center flex-none w-32 border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 bg-white">
+                        <p>Pokémon 2 : {{ lastCombat.pokemon2.nom }}</p>
+                        <img width="150" height="150" viewBox="0 0 56 56" src="{{ lastCombat.pokemon2.image }}" alt="pokemon 2">
+                    </div>
+                    <div class="flex-none w-32"></div>
+                    <div class="flex-none w-32 text-center border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 bg-white">
+                        {% if winner %}
+                        <p class="">Vainqueur : {{ winner.nom }}</p>
+                        <img width="150" height="150" viewBox="0 0 56 56" src="{{ winner.image }}" alt="pokemon vainqueur">
+                        {% endif %}
+                        <p class="">Nombre de tours : {{ lastCombat.nbrTour }}</p>
+                    </div>
+                </div>
+                <a class="text-center uppercase text-xl my-5 text-white underline items-center justify-center flex" href="{{ path('app_lancerCombat')}}">Relancer un nouveau Combat</a>
+            {% else %}
+                <p>Aucun combat trouvé.</p>
+            {% endif %}
+        </main>
+    </body>
+    
+{% endblock %}
